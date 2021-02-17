@@ -1,0 +1,54 @@
+class RatInMaze {
+    static ArrayList <String> possiblePaths;
+    static String path = "";
+    public static ArrayList<String> findPath(int[][] m, int n) {
+        possiblePaths = new ArrayList<>();
+        getPaths(0, 0, m, n, new boolean [n][n]);
+        return possiblePaths;
+    }
+    public static void getPaths (int row, int col, int m[][], int n, boolean visited[][]){
+        //base case 
+        if(!isSafe(row, col, m, n, visited)) return;
+        
+        //mouse has reached the destination
+        if(row == n-1 && col == n-1){
+            possiblePaths.add(path);
+        }
+        
+        //mark the block as visited
+        visited[row][col] = true;
+        
+        //check if the down move is valid
+        if (isSafe(row + 1, col, m, n, visited)){
+            path += 'D';
+            getPaths(row + 1, col, m, n, visited);
+            path = path.substring(0, path.length() - 1);
+        }
+        
+        //check if the upper move is valid
+        if (isSafe(row - 1, col, m, n, visited)){
+            path += 'U';
+            getPaths(row - 1, col, m, n, visited);
+            path = path.substring(0, path.length() - 1);
+        }
+        
+        //check if the right move is valid
+        if (isSafe(row, col+1, m, n, visited)){
+            path += 'R';
+            getPaths(row, col+1, m, n, visited);
+            path = path.substring(0, path.length() - 1);
+        }
+        
+        //check if the left is valid
+        if (isSafe(row, col-1, m, n, visited)){
+            path += 'L';
+            getPaths(row, col-1, m, n, visited);
+            path = path.substring(0, path.length() - 1);
+        }
+        //mark false while backtracking
+        visited[row][col] = false;
+    }
+    public static boolean isSafe(int i, int j, int matrix[][], int n, boolean visited[][]){
+        return (i >= 0 && i < n && j >= 0 && j < n && matrix[i][j] == 1 && !visited[i][j]);
+    }
+}

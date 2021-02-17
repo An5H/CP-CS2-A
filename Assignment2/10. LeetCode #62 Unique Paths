@@ -1,0 +1,24 @@
+import java.util.*;
+import java.io.*;
+
+class UniquePaths {
+    public void main(String args[]){
+        Scanner ob = new Scanner(System.in);
+        int m = ob.nextInt();
+        int n = ob.nextInt();
+        System.out.println(uniquePaths(m, n));
+    }
+    public int uniquePaths(int m, int n) {
+        return uniquePathsMemoized(m, n, new HashMap<>());
+    }
+    int uniquePathsMemoized(int m, int n, Map<String, Integer> paths){
+        String curPath = m+", "+n;  
+        if(paths.containsKey(curPath)) return paths.get(curPath);
+        if(m == 0 || n == 0) return 0;
+        if(m == 1 && n == 1) return 1;
+        
+        paths.put(curPath, uniquePathsMemoized(m-1, n, paths) + uniquePathsMemoized(m, n-1, paths));
+        
+        return paths.get(curPath);
+    }
+}

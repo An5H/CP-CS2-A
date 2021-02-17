@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+ 
+class AllPermutations
+{
+    public static void main (String[] args){
+        Scanner ob = new Scanner(System.in);
+        String str = ob.nextLine();
+
+        List <String> list = new ArrayList<>();
+        permute(str, 0, str.length()-1, list);
+        
+        System.out.println(list);
+    }
+    static void permute(String str, int low, int high, List<String>list){
+        if(low == high){
+            list.add(str);
+        }
+        else{
+            for(int i = low; i <= high; i++){
+                str = swap(str, low, i);
+                permute(str, low+1, high, list);
+                str = swap(str, low, i);
+            }
+        }
+    }
+    static String swap(String str, int i, int j){
+        char[] cur = str.toCharArray();
+        char temp = cur[i];
+        cur[i] = cur[j];
+        cur[j] = temp;
+        return new String(cur);
+    }
+}

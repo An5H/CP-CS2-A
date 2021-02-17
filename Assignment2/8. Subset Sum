@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+ 
+class SubsetSum
+{
+    static ArrayList <int[]> list = new ArrayList<>();
+    public static void main (String[] args){
+        Scanner ob = new Scanner(System.in);
+        int size = ob.nextInt();
+        int arr[] = new int[size];
+        int sum = ob.nextInt();
+        findSubset(arr, size, sum);
+        for(int i[]: list){
+            for(int j: i){
+                System.out.print(j+" ");
+            }
+            System.out.println();
+        }
+    }
+    static void findSubset(int set[], int size, int sum) {
+         //create subset array to pass parameter of subsetSum
+        int subSet[] = new int[size];
+        subsetSum(set, subSet, size, 0, 0, 0, sum);
+    }
+    static void subsetSum(int set[], int subSet[], int n, int subSize, int total, int nodeCount, int sum) {
+        if(total == sum) {
+           list.add(subSet);     
+           //for other subsets
+           subsetSum(set, subSet, n, subSize-1, total - set[nodeCount], nodeCount + 1, sum);
+           return;
+       }
+        else{
+            //find node along breadth
+            for(int i = nodeCount; i < n; i++){
+               subSet[subSize] = set[i];
+               //do for next node in depth
+               subsetSum(set, subSet, n, subSize + 1, total + set[i], i + 1, sum);
+            }
+        }
+    }
+}

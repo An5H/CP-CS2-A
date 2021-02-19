@@ -12,7 +12,7 @@ class Node{
 
 class LL {
 	public static void main (String[] args) {
-	    Node head1 = new Node(5);
+	    Node head = new Node(5);
 	    head.next = new Node(6);
 	    head.next.next = new Node(2);
 	    head.next.next.next = new Node(3);
@@ -21,7 +21,7 @@ class LL {
 	    head2.next = new Node(9);
 	    head2.next.next = new Node(3);
 	    
-	    Node addedList = addTwoLists(head1, head2);
+	    Node addedList = addTwoLists(head, head2);
 	    
 	}
 	Node addTwoLists(Node first, Node second)

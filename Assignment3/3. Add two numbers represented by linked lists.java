@@ -22,7 +22,7 @@ class LL {
 	    head2.next.next = new Node(3);
 	    
 	    Node addedList = addTwoLists(head, head2);
-	    
+	    printList(addedList);
 	}
 	Node addTwoLists(Node first, Node second)
     {

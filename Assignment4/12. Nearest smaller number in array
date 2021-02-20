@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+	public static void main (String[] args) {
+		Scanner ob = new Scanner(System.in);
+	    int size = ob.nextInt();
+	    int arr[] = new int[size];
+	    for(int i = 0; i < size; i++){
+	        arr[i] = ob.nextInt();
+	    }
+	    printPrevSmaller(arr, size);
+	}
+	static void printPrevSmaller(int arr[], int n) { 
+        Stack<Integer> S = new Stack<>(); 
+        // Traverse all array elements  
+        for (int i = 0; i < n; i++) { 
+            while (!S.empty() && S.peek() >= arr[i]) { 
+                S.pop(); 
+            } 
+  
+            if(S.empty()){ 
+                System.out.print("_, "); 
+            } 
+            else { 
+                System.out.print(S.peek() + ", "); 
+            } 
+            S.push(arr[i]); 
+        } 
+    }
+}

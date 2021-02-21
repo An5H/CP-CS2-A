@@ -11,7 +11,6 @@ class Node{
 }
 
 class Main {
-    static int preIndex = 0;
 	public static void main (String[] args) {
 		Node root = new Node(10);
 		root.left = new Node(20);

@@ -4,10 +4,10 @@ import java.util.*;
 
 class Main {
 	public static void main (String[] args) {
-		    Scanner ob = new Scanner(System.in);
-        char X[] = ob.nextLine().toCharArray();
-        char Y[] = ob.nextLine().toCharArray();
-        System.out.println(lcs(X, Y, X.length, Y.length));
+	Scanner ob = new Scanner(System.in);
+	char X[] = ob.nextLine().toCharArray();
+	char Y[] = ob.nextLine().toCharArray();
+	System.out.println(lcs(X, Y, X.length, Y.length));
 	}
 	static int lcs( char[] X, char[] Y, int m, int n ){ 
         int L[][] = new int[m+1][n+1]; 
